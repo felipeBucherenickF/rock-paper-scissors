@@ -61,4 +61,10 @@ const playGame = () => {
   console.log(humanScore);
 };
 
-playGame();
+const rockButton = document.querySelector(".rock-button");
+const paperButton = document.querySelector(".paper-button");
+const scissorsButton = document.querySelector(".scissors-button");
+
+rockButton.addEventListener("click", (e) => {
+  console.log(e.target.value);
+});
