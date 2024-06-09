@@ -46,6 +46,22 @@ body {
   }
 }
 
+.round-choices {
+  width: 42rem;
+  margin-top: 4rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  color: azure;
+  p {
+    display: inline;
+  }
+  span {
+    display: inline;
+    font-size: 3rem;
+  }
+}
+
 .results {
   display: flex;
   gap: 4rem;
@@ -55,7 +71,7 @@ body {
   width: 42rem;
   height: 20rem;
   padding: 4rem;
-  margin-top: 8rem;
+  margin-top: 4rem;
   p {
     font-size: 3.2rem;
     font-weight: bold;

@@ -11,7 +11,7 @@ const getComputerChoice = () => {
   return options[randomNumber];
 };
 
-const getHumanChoice = () => {
+/* const getHumanChoice = () => {
   const options = ["rock", "paper", "scissors"];
   let humanChoice = window.prompt();
   while (!options.includes(humanChoice.toLowerCase())) {
@@ -19,9 +19,15 @@ const getHumanChoice = () => {
     humanChoice = window.prompt();
   }
   return humanChoice.toLowerCase();
-};
+}; */
 
 const playRound = (computerChoice, humanChoice) => {
+  const computerChoiceDisplay = document.querySelector(
+    ".computer-choice-display"
+  );
+  const humanChoiceDisplay = document.querySelector(".player-choice-display");
+  computerChoiceDisplay.textContent = computerChoice;
+  humanChoiceDisplay.textContent = humanChoice;
   let roundWinner = "";
   if (humanChoice === "rock") {
     if (computerChoice === "rock") roundWinner = "tie";
@@ -46,19 +52,28 @@ const playRound = (computerChoice, humanChoice) => {
     humanScore += 1;
     alert("You are the winner");
   }
+  const computerScoreDisplay = document.querySelector(".computer-score");
+  const humanScoreDisplay = document.querySelector(".human-score");
+  computerScoreDisplay.textContent = computerScore;
+  humanScoreDisplay.textContent = humanScore;
+};
+
+const setScores = () => {
+  humanScore = 0;
+  computerScore = 0;
 };
 
 const playGame = () => {
-  for (let i = 0; i < 5; i++) {
-    const computerSelection = getComputerChoice();
-    const humanSelection = getHumanChoice();
-    playRound(computerSelection, humanSelection);
+  if (humanScore === 5 || computerScore === 5) {
+    if (humanScore > computerScore) {
+      alert("YOU WIN THE GAME YEAHHHHH!!!!");
+      setScores();
+    }
+    if (humanScore < computerScore) {
+      alert("YOU LOSE BUUUUUU!!!!!");
+      setScores();
+    }
   }
-  if (humanScore > computerScore) alert("YOU WIN THE GAME YEAHHHHH!!!!");
-  if (humanScore < computerScore) alert("YOU LOSE BUUUUUU!!!!!");
-  if (humanScore === computerScore) alert("IT'S A TIE");
-  console.log(computerScore);
-  console.log(humanScore);
 };
 
 const rockButton = document.querySelector(".rock-button");
@@ -66,5 +81,19 @@ const paperButton = document.querySelector(".paper-button");
 const scissorsButton = document.querySelector(".scissors-button");
 
 rockButton.addEventListener("click", (e) => {
-  console.log(e.target.value);
+  const computerChoice = getComputerChoice();
+  playRound(computerChoice, e.target.value);
+  playGame();
+});
+
+paperButton.addEventListener("click", (e) => {
+  const computerChoice = getComputerChoice();
+  playRound(computerChoice, e.target.value);
+  playGame();
+});
+
+scissorsButton.addEventListener("click", (e) => {
+  const computerChoice = getComputerChoice();
+  playRound(computerChoice, e.target.value);
+  playGame();
 });
