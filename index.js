@@ -11,23 +11,15 @@ const getComputerChoice = () => {
   return options[randomNumber];
 };
 
-/* const getHumanChoice = () => {
-  const options = ["rock", "paper", "scissors"];
-  let humanChoice = window.prompt();
-  while (!options.includes(humanChoice.toLowerCase())) {
-    alert("It's not a valid option: Must be 'Rock', 'Paper' or 'Scissors'");
-    humanChoice = window.prompt();
-  }
-  return humanChoice.toLowerCase();
-}; */
-
 const playRound = (computerChoice, humanChoice) => {
   const computerChoiceDisplay = document.querySelector(
     ".computer-choice-display"
   );
-  const humanChoiceDisplay = document.querySelector(".player-choice-display");
+  const humanChoiceDisplay = document.querySelector(".human-choice-display");
+
   computerChoiceDisplay.textContent = computerChoice;
   humanChoiceDisplay.textContent = humanChoice;
+
   let roundWinner = "";
   if (humanChoice === "rock") {
     if (computerChoice === "rock") roundWinner = "tie";
@@ -54,11 +46,12 @@ const playRound = (computerChoice, humanChoice) => {
   }
   const computerScoreDisplay = document.querySelector(".computer-score");
   const humanScoreDisplay = document.querySelector(".human-score");
+
   computerScoreDisplay.textContent = computerScore;
   humanScoreDisplay.textContent = humanScore;
 };
 
-const setScores = () => {
+const resetScores = () => {
   humanScore = 0;
   computerScore = 0;
 };
@@ -67,11 +60,11 @@ const playGame = () => {
   if (humanScore === 5 || computerScore === 5) {
     if (humanScore > computerScore) {
       alert("YOU WIN THE GAME YEAHHHHH!!!!");
-      setScores();
+      resetScores();
     }
     if (humanScore < computerScore) {
       alert("YOU LOSE BUUUUUU!!!!!");
-      setScores();
+      resetScores();
     }
   }
 };
@@ -81,19 +74,22 @@ const paperButton = document.querySelector(".paper-button");
 const scissorsButton = document.querySelector(".scissors-button");
 
 rockButton.addEventListener("click", (e) => {
+  const humanChoice = e.target.value;
   const computerChoice = getComputerChoice();
-  playRound(computerChoice, e.target.value);
+  playRound(computerChoice, humanChoice);
   playGame();
 });
 
 paperButton.addEventListener("click", (e) => {
+  const humanChoice = e.target.value;
   const computerChoice = getComputerChoice();
-  playRound(computerChoice, e.target.value);
+  playRound(computerChoice, humanChoice);
   playGame();
 });
 
 scissorsButton.addEventListener("click", (e) => {
+  const humanChoice = e.target.value;
   const computerChoice = getComputerChoice();
-  playRound(computerChoice, e.target.value);
+  playRound(computerChoice, humanChoice);
   playGame();
 });
